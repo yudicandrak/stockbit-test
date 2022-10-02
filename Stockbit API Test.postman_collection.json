@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "b3309692-5560-4ce0-9be0-4ee94c2cab10",
+		"name": "Stockbit API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "10086815"
+	},
+	"item": [
+		{
+			"name": "Number 4",
+			"item": [
+				{
+					"name": "Total Data 20",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// verify total data\r",
+									"pm.test(\"Verify total data: 20\", () => {\r",
+									"    pm.expect(pm.response.json().length).eq(20)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.punkapi.com/v2/beers?page=2&per_page=20",
+							"protocol": "https",
+							"host": [
+								"api",
+								"punkapi",
+								"com"
+							],
+							"path": [
+								"v2",
+								"beers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Data 5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// verify total data\r",
+									"pm.test(\"Verify total data: 5\", () => {\r",
+									"    pm.expect(pm.response.json().length).eq(5)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.punkapi.com/v2/beers?page=2&per_page=5",
+							"protocol": "https",
+							"host": [
+								"api",
+								"punkapi",
+								"com"
+							],
+							"path": [
+								"v2",
+								"beers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Data 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// verify total data\r",
+									"pm.test(\"Verify total data: 1\", () => {\r",
+									"    pm.expect(pm.response.json().length).eq(1)\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.punkapi.com/v2/beers?page=2&per_page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"punkapi",
+								"com"
+							],
+							"path": [
+								"v2",
+								"beers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Number 5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// verify total data\r",
+							"pm.test(\"Verify total data: 25\", () => {\r",
+							"    pm.expect(pm.response.json().length).eq(25)\r",
+							"})\r",
+							"\r",
+							"let name = \"\";\r",
+							"for(let i=0 ; i<pm.response.json().length ; i++){\r",
+							"    name = name + pm.response.json()[i].name + \", \"\r",
+							"}\r",
+							"pm.test(\"verify all names: \"+ name, () => {\r",
+							"\r",
+							"})\r",
+							"\r",
+							"// schema\r",
+							"var Ajv = require('ajv'),\r",
+							"    ajv = new Ajv({logger: console}),\r",
+							"    schema = {\r",
+							"//   \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"//   \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"id\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"name\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"tagline\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"first_brewed\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"description\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"image_url\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"abv\": {\r",
+							"      \"type\": \"number\"\r",
+							"    },\r",
+							"    \"ibu\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"target_fg\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"target_og\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"ebc\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"srm\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"ph\": {\r",
+							"      \"type\": \"number\"\r",
+							"    },\r",
+							"    \"attenuation_level\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"volume\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"value\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"unit\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"value\",\r",
+							"        \"unit\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"boil_volume\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"value\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"unit\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"value\",\r",
+							"        \"unit\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"method\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"mash_temp\": {\r",
+							"          \"type\": \"array\",\r",
+							"          \"items\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"properties\": {\r",
+							"              \"temp\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"properties\": {\r",
+							"                  \"value\": {\r",
+							"                    \"type\": \"integer\"\r",
+							"                  },\r",
+							"                  \"unit\": {\r",
+							"                    \"type\": \"string\"\r",
+							"                  }\r",
+							"                },\r",
+							"                \"required\": [\r",
+							"                  \"value\",\r",
+							"                  \"unit\"\r",
+							"                ]\r",
+							"              },\r",
+							"              \"duration\": {\r",
+							"                \"type\": \"integer\"\r",
+							"              }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"              \"temp\",\r",
+							"              \"duration\"\r",
+							"            ]\r",
+							"          }\r",
+							"        },\r",
+							"        \"fermentation\": {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"temp\": {\r",
+							"              \"type\": \"object\",\r",
+							"              \"properties\": {\r",
+							"                \"value\": {\r",
+							"                  \"type\": \"integer\"\r",
+							"                },\r",
+							"                \"unit\": {\r",
+							"                  \"type\": \"string\"\r",
+							"                }\r",
+							"              },\r",
+							"              \"required\": [\r",
+							"                \"value\",\r",
+							"                \"unit\"\r",
+							"              ]\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"temp\"\r",
+							"          ]\r",
+							"        },\r",
+							"        \"twist\": {\r",
+							"          \"type\": \"null\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"mash_temp\",\r",
+							"        \"fermentation\",\r",
+							"        \"twist\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"ingredients\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"malt\": {\r",
+							"          \"type\": \"array\",\r",
+							"          \"items\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"properties\": {\r",
+							"              \"name\": {\r",
+							"                \"type\": \"string\"\r",
+							"              },\r",
+							"              \"amount\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"properties\": {\r",
+							"                  \"value\": {\r",
+							"                    \"type\": \"number\"\r",
+							"                  },\r",
+							"                  \"unit\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                    \"enum\": [\r",
+							"                      \"kilograms\"\r",
+							"                    ]\r",
+							"                  }\r",
+							"                },\r",
+							"                \"required\": [\r",
+							"                  \"value\",\r",
+							"                  \"unit\"\r",
+							"                ]\r",
+							"              }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"              \"name\",\r",
+							"              \"amount\"\r",
+							"            ]\r",
+							"          }\r",
+							"        },\r",
+							"        \"hops\": {\r",
+							"          \"type\": \"array\",\r",
+							"          \"items\": {\r",
+							"            \"type\": \"object\",\r",
+							"            \"properties\": {\r",
+							"              \"name\": {\r",
+							"                \"type\": \"string\",\r",
+							"                \"enum\": [\r",
+							"                  \"Fuggles\",\r",
+							"                  \"First Gold\",\r",
+							"                  \"Cascade\"\r",
+							"                ]\r",
+							"              },\r",
+							"              \"amount\": {\r",
+							"                \"type\": \"object\",\r",
+							"                \"properties\": {\r",
+							"                  \"value\": {\r",
+							"                    \"type\": [\r",
+							"                      \"integer\",\r",
+							"                      \"number\"\r",
+							"                    ]\r",
+							"                  },\r",
+							"                  \"unit\": {\r",
+							"                    \"type\": \"string\",\r",
+							"                    \"enum\": [\r",
+							"                      \"grams\"\r",
+							"                    ]\r",
+							"                  }\r",
+							"                },\r",
+							"                \"required\": [\r",
+							"                  \"value\",\r",
+							"                  \"unit\"\r",
+							"                ]\r",
+							"              },\r",
+							"              \"add\": {\r",
+							"                \"type\": \"string\",\r",
+							"                \"enum\": [\r",
+							"                  \"start\",\r",
+							"                  \"middle\",\r",
+							"                  \"end\"\r",
+							"                ]\r",
+							"              },\r",
+							"              \"attribute\": {\r",
+							"                \"type\": \"string\",\r",
+							"                \"enum\": [\r",
+							"                  \"bitter\",\r",
+							"                  \"flavour\"\r",
+							"                ]\r",
+							"              }\r",
+							"            },\r",
+							"            \"required\": [\r",
+							"              \"name\",\r",
+							"              \"amount\",\r",
+							"              \"add\",\r",
+							"              \"attribute\"\r",
+							"            ]\r",
+							"          }\r",
+							"        },\r",
+							"        \"yeast\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"malt\",\r",
+							"        \"hops\",\r",
+							"        \"yeast\"\r",
+							"      ]\r",
+							"    },\r",
+							"    \"food_pairing\": {\r",
+							"      \"type\": \"array\",\r",
+							"      \"items\": {\r",
+							"        \"type\": \"string\"\r",
+							"      }\r",
+							"    },\r",
+							"    \"brewers_tips\": {\r",
+							"      \"type\": \"string\"\r",
+							"    },\r",
+							"    \"contributed_by\": {\r",
+							"      \"type\": \"string\"\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"id\",\r",
+							"    \"name\",\r",
+							"    \"tagline\",\r",
+							"    \"first_brewed\",\r",
+							"    \"description\",\r",
+							"    \"image_url\",\r",
+							"    \"abv\",\r",
+							"    \"ibu\",\r",
+							"    \"target_fg\",\r",
+							"    \"target_og\",\r",
+							"    \"ebc\",\r",
+							"    \"srm\",\r",
+							"    \"ph\",\r",
+							"    \"attenuation_level\",\r",
+							"    \"volume\",\r",
+							"    \"boil_volume\",\r",
+							"    \"method\",\r",
+							"    \"ingredients\",\r",
+							"    \"food_pairing\",\r",
+							"    \"brewers_tips\",\r",
+							"    \"contributed_by\"\r",
+							"  ]\r",
+							"};\r",
+							" \r",
+							"pm.test('Schema is valid', function() {\r",
+							"    pm.expect(ajv.validate(schema, pm.response.json()), JSON.stringify(ajv.errors)).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.punkapi.com/v2/beers"
+			},
+			"response": []
+		}
+	]
+}
